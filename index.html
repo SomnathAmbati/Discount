@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            position: relative;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            place-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: grid;
+            gap: 15px;
+        }
+
+        label {
+            color: #555;
+        }
+
+        input {
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+
+        #Dr {
+            font-weight: bold;
+        }
+
+        #MRP {
+            border: ;
+            font-weight: bold;
+            color: #000438; /* Green color for highlighting */
+        }
+    </style>
+</head>
+<body>
+    <h1>Discount Calculator</h1> 
+    <form id="discountForm">
+        <label for="Dp">Discount percentage(%): </label>
+        <input id="Dp" type="number" placeholder="Enter Discount %"/>
+
+        <label for="Fp">Fixed Price(/-): </label>
+        <input id="Fp" type="number" placeholder="Enter Fixed rate /-"/>
+
+        <button onclick="calculate(event)">Calculate</button>
+    </form>
+    
+    <div id="Dr"></div>
+    <div id="MRP"></div>
+
+    <script>
+        function calculate(event) {
+            event.preventDefault();
+
+            var Dp = parseFloat(document.getElementById('Dp').value);
+            var Fp = parseFloat(document.getElementById('Fp').value);
+
+            // Check if the inputs are valid numbers
+            if (!isNaN(Dp) && !isNaN(Fp)) {
+                // Perform calculation
+                var Dr = ((Dp / 100) * Fp) / (1 - (Dp / 100));
+                var MRP = Fp + Dr;
+
+                // Display the result
+                document.getElementById('Dr').innerHTML = 'Discount Price: ' + Dr.toFixed(2);
+                document.getElementById('MRP').innerHTML = 'MRP Price: ' + MRP.toFixed(2);
+            } else {
+                document.getElementById('Dr').innerHTML = 'Please enter valid numbers.';
+            }
+        }
+    </script>
+</body>
+</html>
